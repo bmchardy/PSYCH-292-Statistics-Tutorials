@@ -1,0 +1,105 @@
+---
+title: 'PSYCH 292: Hypothesis Testing'
+author: "Bobby McHardy, for the University of Waterloo Psychology Society"
+date: "October 12, 2020"
+output:
+  html_document:
+    df_print: paged
+    toc: true
+    toc_float: true
+    toc_collapsed: true
+    toc_depth: 3
+    number_sections: true
+---
+
+```{r preppack, include=FALSE}
+rm(list = ls(all.names = TRUE)) #will clear all objects includes hidden objects.
+gc()
+library("tibble")
+library(plyr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(gridExtra)
+library(corrplot)
+```
+```{r dataload, echo=FALSE}
+# set the working directory for this project; this is where the data is located
+setwd("C:/Users/26hmk/Documents/GitHub/PSYCH-292-Statistics-Tutorials")
+```
+
+In this PSYCH 292 tutorial, we are going to focus on t-tests. We'll introduce the essential concepts as we walk through a pratical example.
+
+While most of the focus of this tutorial will be on statisics, we'll also look at how we can perform these calculations in a statistical programming language called "R". I'll put the "**Using R**" heading throughout the tutorial to denote optional information about the "R" programming language! Enjoy :)
+
+# Our Data
+
+We'll be conducting our t-tests on a dataset of N = 18 participants. These (example) data describe the experiences of our 18 participants in an experiment about Music Genres and Well-Being.
+
+## Experimental Procedure
+
+We randomly asked 18 students in our PSYCH 292 class to participate. Each participant in the *experiment* began by reporting their *baseline* (initial) Well-Being score. Well-Being was *operationalized* as a *self-report* measure of their perceived health and happiness. Participants rated their Well-Being on a score from 1 (A very low Well-Being) to 7 (A very high Well-Being). Participants were also asked to report the number of coffees that they drink on an average day because we think that Coffee Consumption might be a *predictor* variable of one's Well-Being. Knowing how much coffee each participant drinks per day allows us to *control for* Coffee Consumption.
+
+After we measured our *baseline* Well-Being score and asked about Coffee Consumption, we began the *experimental manipulation*. The *indepenent (manipulated) variable* is Music Genre. We *randomly assigned* each participant to one of three Music Genre *conditions* (either Classical, Blues, or Control). In the Classical Music Genre condition, the participants were asked to listen to 15 minutes of Classical music when they first wake up for one week. Likewise, in the Blues Music Genre condition, the participants were asked to listen to 15 minutes of Blues music when they first wake up for one week. In the *control condition*, participants were not asked to listen to any music for the week.
+
+At the end of the week, we measured (in a *post-test*) the Well-Being of each participant again using the same 1-7 *self-report* measure.
+
+**Recall** that this is an *experiment* because we are *manipulating* our *independent variable* (Music Genre) and *randomly assigning* participants to *conditions* (*levels* of the independent variable). To make sure you are clear on all of these terms, review your PSYCH 291 notes.
+
+## IV, DV, Conditions
+
+In this dataset, the *independent variable (IV)* is Music Genre (either Classical, Blues, or Control *conditions*). The *dependent variable* is self-report Well-Being (from 1-7). We are also *controlling for* Coffee Consumption.
+
+## Dataset
+
+**Using R:** To load a datafile using R, we can use the following code.
+```{r dataload2}
+# In R, or other programming languages, we can assign values
+# to variables just like you would in research.
+#
+# In this case, we are assigning the contents of the datafile
+# on my computer to a variable called "wellbeing_intervention_data"
+# using the "<-" (assignment) operator.
+wellbeing_intervention_data <- read.csv("wellbeing_intervention_data.csv")
+```
+
+At the end of the week, these are the data we collected.
+
+**Using R: ** To display a table of data, simply type the name of the variable like so!
+```{r datatable}
+wellbeing_intervention_data
+```
+
+The columns of this data table are *Participant*, *Coffess* (the number of cups that each participant reporting consuming daily), *Music* (the condition; one of *Classical*, *Blues*, or *Control*), *Baseline_WB* (the level of Well-Being each participant reported at the beginning of the experiment; between 1 and 7), and *Post_WB* (the level of Well-Being reported at the end of the week-long intervention).
+
+# Questions
+
+So what are some *research questions* that we might want to answer?
+
+1. **"Do different genres of the music *cause* university students to experience different levels of well-being?"**
+2. **"Does one week of classical music *lead to* greater reported well-being?"**
+
+**Note** that *lead to* is another way to make a causal claim.
+
+**Recall** that we can make a *causal claim* because our data are *experimental* (and abides by the 3 rules for causal claims). If you're unsure why this means that we can make a causal claim, look back on your PSYCH 291 notes.
+
+How do we answer these questions?
+
+# Hypothesis Testing
+
+Put simply, **hypothesis testing** is a way to test whether a *hypothesis* we make about a *population* is true or false.
+
+The only way to prove *for certain* that different music genres lead to different levels of well-being in the population of university students would be to experiment with *every* university student in the world (the entire population). It's not exactly reasonable for us to do that, so we have to settle for a best guess about what the sample data are telling us.
+
+This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called **descriptive statistics** because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) `M = 2.389`. This exactly describes our sample. Another example of a descriptive statistic is the number of participants. There are exactly `N = 18` participants in this experiment and this describes our sample perfectly.
+
+In the case of *hypothesis testing*, we cannot look at our sample and say for certain that "yes, one week of listening to classical music leads to greater well-being in the population" because there is no way to say this for certain just based on our sample. Further, it's not objectively correct to describe our sample as "showing us that classical music leads to greater well-being" because 'greater well-being' is subjective. What does 'greater' mean?
+
+To answer these questions, we need to test our hypotheses using **inferential statistics**: *inferences* we make about the population using our sample. These are no longer facts! These are our guesses about what our sample is saying based on probability.
+
+# The Hypothesis
+
+(p. 260).
+
+# The t Statistic
+
