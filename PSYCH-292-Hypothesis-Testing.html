@@ -294,7 +294,7 @@ wellbeing_intervention_data &lt;- read.csv(&quot;wellbeing_intervention_data.csv
 <pre class="r"><code>wellbeing_intervention_data</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["Participant"],"name":[1],"type":["int"],"align":["right"]},{"label":["Coffees"],"name":[2],"type":["int"],"align":["right"]},{"label":["Music"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Baseline_WB"],"name":[4],"type":["int"],"align":["right"]},{"label":["Post_WB"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"3","3":"Control","4":"4","5":"5"},{"1":"2","2":"3","3":"Blues","4":"5","5":"3"},{"1":"3","2":"3","3":"Classical","4":"4","5":"4"},{"1":"4","2":"1","3":"Control","4":"2","5":"3"},{"1":"5","2":"4","3":"Classical","4":"5","5":"4"},{"1":"6","2":"3","3":"Control","4":"4","5":"5"},{"1":"7","2":"0","3":"Blues","4":"6","5":"2"},{"1":"8","2":"3","3":"Classical","4":"4","5":"5"},{"1":"9","2":"4","3":"Control","4":"4","5":"4"},{"1":"10","2":"2","3":"Control","4":"4","5":"4"},{"1":"11","2":"2","3":"Blues","4":"4","5":"1"},{"1":"12","2":"3","3":"Classical","4":"5","5":"5"},{"1":"13","2":"1","3":"Blues","4":"5","5":"2"},{"1":"14","2":"3","3":"Classical","4":"5","5":"6"},{"1":"15","2":"4","3":"Blues","4":"4","5":"4"},{"1":"16","2":"0","3":"Control","4":"5","5":"4"},{"1":"17","2":"3","3":"Classical","4":"4","5":"6"},{"1":"18","2":"1","3":"Blues","4":"4","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Participant"],"name":[1],"type":["int"],"align":["right"]},{"label":["Coffees"],"name":[2],"type":["int"],"align":["right"]},{"label":["Music"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Baseline_WB"],"name":[4],"type":["int"],"align":["right"]},{"label":["Post_WB"],"name":[5],"type":["int"],"align":["right"]}],"data":[{"1":"1","2":"3","3":"Control","4":"4","5":"5"},{"1":"2","2":"3","3":"Blues","4":"5","5":"3"},{"1":"3","2":"3","3":"Classical","4":"4","5":"4"},{"1":"4","2":"1","3":"Control","4":"2","5":"3"},{"1":"5","2":"4","3":"Classical","4":"5","5":"5"},{"1":"6","2":"3","3":"Control","4":"4","5":"5"},{"1":"7","2":"0","3":"Blues","4":"6","5":"2"},{"1":"8","2":"3","3":"Classical","4":"4","5":"5"},{"1":"9","2":"4","3":"Control","4":"4","5":"4"},{"1":"10","2":"2","3":"Control","4":"4","5":"4"},{"1":"11","2":"2","3":"Blues","4":"4","5":"1"},{"1":"12","2":"3","3":"Classical","4":"5","5":"6"},{"1":"13","2":"1","3":"Blues","4":"5","5":"2"},{"1":"14","2":"3","3":"Classical","4":"5","5":"6"},{"1":"15","2":"4","3":"Blues","4":"4","5":"4"},{"1":"16","2":"0","3":"Control","4":"5","5":"4"},{"1":"17","2":"3","3":"Classical","4":"4","5":"7"},{"1":"18","2":"1","3":"Blues","4":"4","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>The columns of this data table are <em>Participant</em>, <em>Coffess</em> (the number of cups that each participant reporting consuming daily), <em>Music</em> (the condition; one of <em>Classical</em>, <em>Blues</em>, or <em>Control</em>), <em>Baseline_WB</em> (the level of Well-Being each participant reported at the beginning of the experiment; between 1 and 7), and <em>Post_WB</em> (the level of Well-Being reported at the end of the week-long intervention).</p>
@@ -304,7 +304,7 @@ wellbeing_intervention_data &lt;- read.csv(&quot;wellbeing_intervention_data.csv
 <h1><span class="header-section-number">2</span> Questions</h1>
 <p>So what are some <em>research questions</em> that we might want to answer?</p>
 <ol style="list-style-type: decimal">
-<li><strong>“Do different genres of the music <em>cause</em> university students to experience different levels of well-being?”</strong></li>
+<li><strong>“Does Blues music <em>cause</em> university students to experience different levels of well-being than Classical music?”</strong></li>
 <li><strong>“Does one week of classical music <em>lead to</em> greater reported well-being?”</strong></li>
 </ol>
 <p><strong>Note</strong> that <em>lead to</em> is another way to make a causal claim.</p>
@@ -315,16 +315,43 @@ wellbeing_intervention_data &lt;- read.csv(&quot;wellbeing_intervention_data.csv
 <h1><span class="header-section-number">3</span> Hypothesis Testing</h1>
 <p>Put simply, <strong>hypothesis testing</strong> is a way to test whether a <em>hypothesis</em> we make about a <em>population</em> is true or false.</p>
 <p>The only way to prove <em>for certain</em> that different music genres lead to different levels of well-being in the population of university students would be to experiment with <em>every</em> university student in the world (the entire population). It’s not exactly reasonable for us to do that, so we have to settle for a best guess about what the sample data are telling us.</p>
-<p>This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called <strong>descriptive statistics</strong> because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) <code>M = 2.389</code>. This exactly describes our sample. Another example of a descriptive statistic is the number of participants. There are exactly <code>N = 18</code> participants in this experiment and this describes our sample perfectly.</p>
-<p>In the case of <em>hypothesis testing</em>, we cannot look at our sample and say for certain that “yes, one week of listening to classical music leads to greater well-being in the population” because there is no way to say this for certain just based on our sample. Further, it’s not objectively correct to describe our sample as “showing us that classical music leads to greater well-being” because ‘greater well-being’ is subjective. What does ‘greater’ mean?</p>
-<p>To answer these questions, we need to test our hypotheses using <strong>inferential statistics</strong>: <em>inferences</em> we make about the population using our sample. These are no longer facts! These are our guesses about what our sample is saying based on probability.</p>
+<p>This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called <strong>descriptive statistics</strong> because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) <code>M = 2.389</code> and the number of participants in the experiment are <code>N = 18</code>. These statistics exactly describe aspects of our sample.</p>
+<p><strong>Using R:</strong> We can use R, for example, to find the well-being mean (descriptive statistic) for participants before and after a treatment of classical music.</p>
+<pre class="r"><code># subset selects only the rows of our wellbeing_intervention_data table
+# that meet the criteria (Music must equal &quot;Classical&quot;). We then make a
+# new variable called &quot;classical_participants&quot; that contains only that data.
+classical_participants &lt;- subset(wellbeing_intervention_data, Music == &quot;Classical&quot;)
+
+# Next, we can calculate means of the Baseline_WB and Post_WB columns
+# (and assign those means to numerical variables)!
+classical_baseline_wellbeing_M &lt;- mean(classical_participants$Baseline_WB)
+classical_post_wellbeing_M &lt;- mean(classical_participants$Post_WB)
+
+# We can even &quot;print&quot; (display) the results for all to see like so:
+print(paste0(&quot;Before the intervention, the classical condition reported an average well-being of &quot;, classical_baseline_wellbeing_M, &quot;. After the intervention, these same participants reported an average well-being of &quot;, classical_post_wellbeing_M, &quot;.&quot;))</code></pre>
+<pre><code>## [1] &quot;Before the intervention, the classical condition reported an average well-being of 4.5. After the intervention, these same participants reported an average well-being of 5.5.&quot;</code></pre>
+<p>This shows us that well-being is higher on average in our sample after the weeklong intervention for the Classical group. But does this mean we have enough information to confirm our second research question (“Does one week of classical music <em>lead to</em> greater reported well-being?”) No.</p>
+<p>In the case of <em>hypothesis testing</em>, we cannot look at our sample and say for certain that “yes, one week of listening to classical music leads to greater well-being in the <em>population</em>” because there is no way to know this about the population for certain just based on our sample; any sample has <em>sampling error</em>. We’re also moving away from descriptive statistics with this research question because we are no longer looking to <em>describe</em> our sample, we are looking to <em>infer</em> conclusions from the sample about the population.</p>
+<p>We need to test our hypotheses using <strong>inferential statistics</strong>: <em>inferences</em> we make about the <em>population</em> using our sample. These statistics are no longer ‘facts’! These are guesses about what our sample is saying based on probability.</p>
 </div>
 <div id="the-hypothesis" class="section level1">
 <h1><span class="header-section-number">4</span> The Hypothesis</h1>
-<p>(p. 260).</p>
+<p>When we are testing our hypothesis, we talk about the <em>null hypothesis</em> and the <em>alternative hypothesis</em>.</p>
+<p>The <strong>null hypothesis</strong>, written <span class="math inline">\(H_0\)</span>, is the hypothesis that this difference does not exist. In mathematical terms, we might say that one group is <em>equal</em> to the other group. In our exmple, The <em>null hypothesis</em> is that “there is no population difference in well-being b## etween baseline and after the Classical music intervention.”</p>
+<p>The <strong>alternative hypothesis</strong>, written <span class="math inline">\(H_1\)</span>, is the hypothesis that there is a difference. In mathematical terms, we might say that one group is <em>not equal</em> to the other group. In our exmple, The <em>alternative hypothesis</em> is that “there is a population difference in well-being between baseline and after the Classical music intervention.”</p>
 </div>
 <div id="the-t-statistic" class="section level1">
-<h1><span class="header-section-number">5</span> The t Statistic</h1>
+<h1><span class="header-section-number">5</span> The <em>t</em> Statistic</h1>
+<p><strong>Question:</strong> How do we know if there is a difference between two groups?</p>
+<p>You might be wondering if we can just simply compare the sample means of both groups and see if they’re the same or not. This doesn’t really work.</p>
+<p>For our example, <span class="math inline">\(H_0\)</span> = “no population difference in well-being between baseline and post-classical music intervention.” <span class="math inline">\(H_1\)</span> = “there is a population difference in well-being between baseline and post-lassical music intervention.”</p>
+<p>We know that the average well-being of the sample before the Classical music intervention was 4.5 (the ‘pre-test’ group). We also know that after a week of classical music the mean was found to be 5.5 (the ‘post-test’ group) in the sample. We can see that the two are different by 1. So we <em>know for a fact</em> that the means in the <em>sample</em> are different.</p>
+<p>But that’s not what we’re asking. We’re asking if these means are different in the <em>population</em>. This is a trickier question because we did not survey the entire population of students (of course).</p>
+<div id="remember-z-score" class="section level2">
+<h2><span class="header-section-number">5.1</span> Remember <em>z</em>-Score?</h2>
+<p>Remember the <em>z</em>-Score from previous units?</p>
+<p><span class="math display">\[Z = \frac{x-\mu}{\sigma}\]</span></p>
+</div>
 </div>
 
 

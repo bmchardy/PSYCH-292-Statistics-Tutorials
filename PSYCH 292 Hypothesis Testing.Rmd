@@ -76,7 +76,7 @@ The columns of this data table are *Participant*, *Coffess* (the number of cups 
 
 So what are some *research questions* that we might want to answer?
 
-1. **"Do different genres of the music *cause* university students to experience different levels of well-being?"**
+1. **"Does Blues music *cause* university students to experience different levels of well-being than Classical music?"**
 2. **"Does one week of classical music *lead to* greater reported well-being?"**
 
 **Note** that *lead to* is another way to make a causal claim.
@@ -91,15 +91,55 @@ Put simply, **hypothesis testing** is a way to test whether a *hypothesis* we ma
 
 The only way to prove *for certain* that different music genres lead to different levels of well-being in the population of university students would be to experiment with *every* university student in the world (the entire population). It's not exactly reasonable for us to do that, so we have to settle for a best guess about what the sample data are telling us.
 
-This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called **descriptive statistics** because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) `M = 2.389`. This exactly describes our sample. Another example of a descriptive statistic is the number of participants. There are exactly `N = 18` participants in this experiment and this describes our sample perfectly.
+This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called **descriptive statistics** because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) `M = 2.389` and the number of participants in the experiment are `N = 18`. These statistics exactly describe aspects of our sample.
 
-In the case of *hypothesis testing*, we cannot look at our sample and say for certain that "yes, one week of listening to classical music leads to greater well-being in the population" because there is no way to say this for certain just based on our sample. Further, it's not objectively correct to describe our sample as "showing us that classical music leads to greater well-being" because 'greater well-being' is subjective. What does 'greater' mean?
+**Using R:** We can use R, for example, to find the well-being mean (descriptive statistic) for participants before and after a treatment of classical music.
+```{r datadescriptives}
+# subset selects only the rows of our wellbeing_intervention_data table
+# that meet the criteria (Music must equal "Classical"). We then make a
+# new variable called "classical_participants" that contains only that data.
+classical_participants <- subset(wellbeing_intervention_data, Music == "Classical")
 
-To answer these questions, we need to test our hypotheses using **inferential statistics**: *inferences* we make about the population using our sample. These are no longer facts! These are our guesses about what our sample is saying based on probability.
+# Next, we can calculate means of the Baseline_WB and Post_WB columns
+# (and assign those means to numerical variables)!
+classical_baseline_wellbeing_M <- mean(classical_participants$Baseline_WB)
+classical_post_wellbeing_M <- mean(classical_participants$Post_WB)
+
+# We can even "print" (display) the results for all to see like so:
+print(paste0("Before the intervention, the classical condition reported an average well-being of ", classical_baseline_wellbeing_M, ". After the intervention, these same participants reported an average well-being of ", classical_post_wellbeing_M, "."))
+```
+
+This shows us that well-being is higher on average in our sample after the weeklong intervention for the Classical group. But does this mean we have enough information to confirm our second research question ("Does one week of classical music *lead to* greater reported well-being?") No.
+
+In the case of *hypothesis testing*, we cannot look at our sample and say for certain that "yes, one week of listening to classical music leads to greater well-being in the *population*" because there is no way to know this about the population for certain just based on our sample; any sample has *sampling error*. We're also moving away from descriptive statistics with this research question because we are no longer looking to *describe* our sample, we are looking to *infer* conclusions from the sample about the population.
+
+We need to test our hypotheses using **inferential statistics**: *inferences* we make about the *population* using our sample. These statistics are no longer 'facts'! These are guesses about what our sample is saying based on probability.
 
 # The Hypothesis
 
-(p. 260).
+When we are testing our hypothesis, we talk about the *null hypothesis* and the *alternative hypothesis*.
 
-# The t Statistic
+The **null hypothesis**, written $H_0$, is the hypothesis that this difference does not exist. In mathematical terms, we might say that one group is *equal* to the other group. In our exmple, The *null hypothesis* is that "there is no population difference in well-being b## etween baseline and after the Classical music intervention."
+
+The **alternative hypothesis**, written $H_1$, is the hypothesis that there is a difference. In mathematical terms, we might say that one group is *not equal* to the other group. In our exmple, The *alternative hypothesis* is that "there is a population difference in well-being between baseline and after the Classical music intervention."
+
+# The *t* Statistic
+
+**Question:** How do we know if there is a difference between two groups?
+
+You might be wondering if we can just simply compare the sample means of both groups and see if they're the same or not. This doesn't really work.
+
+For our example,
+$H_0$ = "no population difference in well-being between baseline and post-classical music intervention."
+$H_1$ = "there is a population difference in well-being between baseline and post-lassical music intervention."
+
+We know that the average well-being of the sample before the Classical music intervention was `r classical_baseline_wellbeing_M` (the 'pre-test' group). We also know that after a week of classical music the mean was found to be `r classical_post_wellbeing_M` (the 'post-test' group) in the sample. We can see that the two are different by `r (classical_post_wellbeing_M - classical_baseline_wellbeing_M)`. So we *know for a fact* that the means in the *sample* are different.
+
+But that's not what we're asking. We're asking if these means are different in the *population*. This is a trickier question because we did not survey the entire population of students (of course).
+
+## Remember *z*-Score?
+
+Remember the *z*-Score from previous units?
+
+$$Z = \frac{x-\mu}{\sigma}$$
 
