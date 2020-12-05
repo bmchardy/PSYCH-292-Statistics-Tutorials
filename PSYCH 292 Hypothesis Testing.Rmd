@@ -93,7 +93,7 @@ Put simply, **hypothesis testing** is a way to test whether a *hypothesis* we ma
 
 The only way to prove *for certain* that different music genres lead to different levels of well-being in the population of university students would be to experiment with *every* university student in the world (the entire population). It's not exactly reasonable for us to do that, so we have to settle for a best guess about what the sample data are telling us.
 
-This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called **descriptive statistics** because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) `M = 2.389` and the number of participants in the experiment are `N = 18`. These statistics exactly describe aspects of our sample.
+Doing this requires a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called **descriptive statistics** because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) `M = 2.389` and the number of participants in the experiment are `N = 18`. These statistics exactly describe aspects of our sample.
 
 **Using R:** We can use R, for example, to find the well-being mean (descriptive statistic) for participants before and after a treatment of classical music.
 ```{r datadescriptives}
@@ -149,7 +149,7 @@ $z$ is a great way to figure out how 'far' from the population mean ($\mu$) a va
 
 $$z = \frac{x-\mu}{\sigma} = \frac{(-8)-(-3)}{1} =-5$$
 
-This *z*-Score tells us that the morning of December 4th is actually 5 standard deviations below the average population temperature! This is significantly below average! Brrrr
+This *z*-Score tells us that the morning of December 4th is actually 5 standard deviations below the average population temperature! Remember that we could look at our *z* table and see that only less than 0.00004% of days are expected to be below this level, so this is significantly below average! Brrrr
 
 We can also use *z*-Scores to compare different samples when we're given the population standard deviation. If a sample of 30 people before the classical music intervention had an average well-being score of 2 ($\mu_1 = 2$) and if the same people after the classical music intervention had an average well-being score of 4 ($\mu_1 = 4$), we could calculate the *z*-Score. Of course, we need to know the standard deviation. If we are given the population standard deviations, then we're good to go. In this case, let's say that $\sigma_1 = 1.5$ and $\sigma_2 = 1$.
 
@@ -167,7 +167,7 @@ If we search up the *z*-value in a *z* table, we see that this *z*-value is abov
 tbl_z
 ```
 
-It's a crazy outlier. Remember that we only need to be above the 97.5% mark (*p* < 0.05) to reject the null hypothesis. We're we'll past it, so we reject $H_0$; we say "there is a significant difference between the two groups - our classical music intervention worked!"
+It's a crazy outlier. Remember that we only need to be above the 97.5% mark ($p < .05$) to reject the null hypothesis. We're well past it, so we reject $H_0$; we say "there is a significant difference between the two groups - our classical music intervention worked!"
 
 So *z*-Scores are great, but we've just found a limitation to *z*-Scores here..
 
@@ -203,7 +203,7 @@ There are two main cases where a *t*-statistic can be used.
 
 (1) Dependent *t*-Test (sometimes called a 'paired *t*-Test')
 
-This is the one that is most similar to what we were just doing above with the pre- and post-test classical music groups, only now we do not need to be given population standard deviations, because we *t*-Tests let us use the sample sd's!
+This is the one that is most similar to what we were just doing above with the pre- and post-test classical music groups, only now we do not need to be given population standard deviations, because *t*-Tests kindly let us use the sample sd's!
 
 It's called dependent because we're looking at differences within the same group of people, just over time or over some intervention.
 
@@ -249,7 +249,7 @@ The *t* table functions a little bit differently than the *z* table. When we use
 
 If, like above, we were trying to look up $z = 6.08$, we would find that it is above 99.999% of all values in the distribution - this shows that we indeed have a difference greater than the 97.5% needed to show that $p < .05$ so that we can reject our null hypothesis ($H_0$).
 
-In the case of the *t* table, we don't use our *t* value to look up the percentage (percentile). We actually use our degrees of freedom ($df$) to look up a level of significance.
+In the case of the *t* table, we don't use our *t* value to look up the percentage (percentile). We actually use our degrees of freedom ($df$) to look up a level of significance (a *z* value).
 
 In this example, we have a sample of size $N = 30$ people. This means that our degrees of freedom is $df = N - 1 = 30 - 1 = 29$. Looking this value up in the table, we find a "significance threshold" of $t = 1.699$ish.
 
@@ -274,11 +274,11 @@ We need to calculate the mean and standard deviation of PSYCH 292 students' well
 wellbeing_intervention_data %>% filter(Music == "Classical")
 
 # let's calculate some descriptive statistics that we'll need
-N_classical = nrow(wellbeing_intervention_data %>% filter(Music == "Classical"))
-M_pretest = mean((wellbeing_intervention_data %>% filter(Music == "Classical"))$Baseline_WB)
-SD_pretest = sd((wellbeing_intervention_data %>% filter(Music == "Classical"))$Baseline_WB)
-M_posttest = mean((wellbeing_intervention_data %>% filter(Music == "Classical"))$Post_WB)
-SD_posttest = sd((wellbeing_intervention_data %>% filter(Music == "Classical"))$Post_WB)
+N_classical <- nrow(wellbeing_intervention_data %>% filter(Music == "Classical"))
+M_pretest <- mean((wellbeing_intervention_data %>% filter(Music == "Classical"))$Baseline_WB)
+SD_pretest <- sd((wellbeing_intervention_data %>% filter(Music == "Classical"))$Baseline_WB)
+M_posttest <- mean((wellbeing_intervention_data %>% filter(Music == "Classical"))$Post_WB)
+SD_posttest <- sd((wellbeing_intervention_data %>% filter(Music == "Classical"))$Post_WB)
 ```
 
 **Using R:** We can also print these values!
@@ -294,7 +294,7 @@ print(SD_posttest)
 **Using R:** And calculate our degrees of freedom using another (already existing) variable!
 ```{r datatable_classical_descriptives_df}
 # let's 'display' these values
-df = N_classical - 1
+df <- N_classical - 1
 
 # and we'll print it
 print(df)
@@ -307,7 +307,7 @@ $$t = \frac{M_2-M_1}{\sqrt{\frac{SD_1^2}{N} + \frac{SD_2^2}{N}}} = \frac{5.5-4.5
 **Using R:** We can also use R to calculate this *t* statistic as follows.
 ```{r datatable_classical_t}
 # calculate t (sqrt is for a square root)
-t = (M_posttest - M_pretest) / sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
+t <- (M_posttest - M_pretest) / sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
 
 # and we'll print the value
 print(t)
@@ -323,17 +323,21 @@ We notice that a significant *t* value using only 5 degrees of freedom is $t_{si
 
 This being said, we're only using $N = 6$ participants. Notice that the more participants we use, the lower the calculated *t* value needs to be to be significant ($p < .05$). As we discussed above, this makes sense because the larger our sample, the more we can believe that those standard deviations approach the real deal (the population standard deviations).
 
+In APA-7 format, we might report this finding as follows:
+
+"A significant change in self-report well-being was measured within the $N = 6$ participants between pre-test ($M_1 = 5.5$, $SD_1 = 0.55$) and post-test ($M_2 = 4.5$, $SD_2 = 1.05$) 7 days later ($t(5) = 2.07$, $p < .05$)."
+
 ## Independent
 
 We're going to end the tutorial with the second major type of *t*-test we can perform.
 
 (1) Independent Samples *t*-Test
 
-This *t*-test is only slightly different from the above because, instead of looking at within-participant across time or across intervention, we look at two different (independent) groups of participants experience significantly different change.
+This *t*-test is only slightly different from the above because, instead of looking at within-participant change across time or across intervention, we look at whether two different (independent) groups of participants experience significantly different change.
 
 This type of question is useful if we were to investigate whether the change that is experienced in the Classical-condition participants over time is greater than the change that is naturally experienced in the control condition over time (For example, there may be maturation or history effects left uncontrolled that cause a natural increase in well-being. This aspect of control is one of the beautiful features of an experiment.)
 
-Really, there are only two differences between the dependent and independent samples *t*. First, by design, two independent samples have the chance to be of different sizes ($n$'s).
+Really, there are only two differences between the dependent and independent samples *t*. First, by design, two independent samples have the chance to be of different sample sizes ($n$'s).
 
 Therefore, instead of just referring to $n$ in our *t*-statistic formula, we must consider the possibility of an $n_1$ and $n_2$. Plain and simple.
 
@@ -363,11 +367,11 @@ print(SD_posttest)
 wellbeing_intervention_data %>% filter(Music == "Control")
 
 # let's calculate some descriptive statistics that we'll need
-N_control = nrow(wellbeing_intervention_data %>% filter(Music == "Control"))
-M_control_t1 = mean((wellbeing_intervention_data %>% filter(Music == "Control"))$Baseline_WB)
-SD_control_t1 = sd((wellbeing_intervention_data %>% filter(Music == "Control"))$Baseline_WB)
-M_control_t2 = mean((wellbeing_intervention_data %>% filter(Music == "Control"))$Post_WB)
-SD_control_t2 = sd((wellbeing_intervention_data %>% filter(Music == "Control"))$Post_WB)
+N_control <- nrow(wellbeing_intervention_data %>% filter(Music == "Control"))
+M_control_t1 <- mean((wellbeing_intervention_data %>% filter(Music == "Control"))$Baseline_WB)
+SD_control_t1 <- sd((wellbeing_intervention_data %>% filter(Music == "Control"))$Baseline_WB)
+M_control_t2 <- mean((wellbeing_intervention_data %>% filter(Music == "Control"))$Post_WB)
+SD_control_t2 <- sd((wellbeing_intervention_data %>% filter(Music == "Control"))$Post_WB)
 ```
 
 **Using R:** We'll print the control descriptive statistics now too!
@@ -384,10 +388,10 @@ We need a couple intermediate values to make this work. We're looking at the *ch
 
 ```{r datatable_intermediate_descriptives}
 # let's 'display' these values
-M_classical_change = M_posttest - M_pretest
-M_control_change = M_control_t2 - M_control_t1
-SD_classical_change = sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
-SD_control_change = sqrt((SD_control_t1^2 + SD_control_t2^2) / N_control)
+M_classical_change <- M_posttest - M_pretest
+M_control_change <- M_control_t2 - M_control_t1
+SD_classical_change <- sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
+SD_control_change <- sqrt((SD_control_t1^2 + SD_control_t2^2) / N_control)
 ```
 
 From this, we figure out that the mean change in scores for classical participants was `r M_classical_change`, while mean change in the control condition was  `r M_control_change`. We also found the standard deviation of these changes; `r SD_classical_change` and `r SD_control_change`, respectively.
@@ -395,9 +399,9 @@ From this, we figure out that the mean change in scores for classical participan
 **Using R:** Okay. We'll compute the independent *t*-value now. Only this time, we're going to rely completely on R; we won't be calculating it by hand.
 ```{r datatable_control_t}
 # calculate t (sqrt is for a square root)
-t = (M_classical_change - M_control_change) /
+t <- (M_classical_change - M_control_change) /
   sqrt((SD_classical_change^2 / N_classical)
-         + (SD_control_change^2 / N_classical))
+         + (SD_control_change^2 / N_control))
 
 # and we'll print the value
 print(t)
@@ -411,7 +415,7 @@ tbl_t
 
 For $df = 10$, we only need $t_{significant} = 1.812$ for us to have a significant effect. Since $t = 2.335$, we find that $t > t_{significant}$ and therefore we reject the null hypothesis that the change in well-being among classical participants was due to maturation and/or history.
 
-Therefore, we believe the classical music intervention is actively improving the well-being of PSYCH 292 students.
+Therefore, we believe the classical music intervention leads to an improvement in the well-being of PSYCH 292 students.
 
 # Conclusion
 
@@ -421,4 +425,6 @@ There's also many more analyses that could be run on these data.
 
 I hope you got something out of this! Thanks for joining me :))
 
-(I'm going to go to bed now because stats makes me lose track of time; it's 3AM and is therefore past my bedtime.)
+
+
+(I'm going to go to bed now because running stats makes me lose track of time; it's 3AM and is therefore past my bedtime.)

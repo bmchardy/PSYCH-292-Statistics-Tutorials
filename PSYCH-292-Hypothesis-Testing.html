@@ -2840,7 +2840,7 @@ wellbeing_intervention_data &lt;- read.csv(&quot;wellbeing_intervention_data.csv
 <h1><span class="header-section-number">3</span> Hypothesis Testing</h1>
 <p>Put simply, <strong>hypothesis testing</strong> is a way to test whether a <em>hypothesis</em> we make about a <em>population</em> is true or false.</p>
 <p>The only way to prove <em>for certain</em> that different music genres lead to different levels of well-being in the population of university students would be to experiment with <em>every</em> university student in the world (the entire population). It’s not exactly reasonable for us to do that, so we have to settle for a best guess about what the sample data are telling us.</p>
-<p>This is a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called <strong>descriptive statistics</strong> because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) <code>M = 2.389</code> and the number of participants in the experiment are <code>N = 18</code>. These statistics exactly describe aspects of our sample.</p>
+<p>Doing this requires a new type of statistic (and a very powerful one). Before, we had to settle for descriptions of our sample (What is the mean? The median? The standard deviation?) These were called <strong>descriptive statistics</strong> because they described the sample of data exactly. For example, in our dataset above, the average number of coffees that the participants reportedly drink per day is exactly (rounded) <code>M = 2.389</code> and the number of participants in the experiment are <code>N = 18</code>. These statistics exactly describe aspects of our sample.</p>
 <p><strong>Using R:</strong> We can use R, for example, to find the well-being mean (descriptive statistic) for participants before and after a treatment of classical music.</p>
 <pre class="r"><code># subset selects only the rows of our wellbeing_intervention_data table
 # that meet the criteria (Music must equal &quot;Classical&quot;). We then make a
@@ -2878,7 +2878,7 @@ print(paste0(&quot;Before the intervention, the classical condition reported an 
 <p><span class="math display">\[z = \frac{x-\mu}{\sigma}\]</span></p>
 <p><span class="math inline">\(z\)</span> is a great way to figure out how ‘far’ from the population mean (<span class="math inline">\(\mu\)</span>) a value is, in terms of standard deviations of the population (<span class="math inline">\(\sigma\)</span>). For example, if we knew that the (all-time) average December morning in Waterloo is -3°C (population <span class="math inline">\(\mu = -3\)</span>) with a standard deviation of 1°C (<span class="math inline">\(\sigma = 1\)</span>) and we measured that the morning of December 4th was -8°C (<span class="math inline">\(x = -8\)</span>) in Waterloo, we could calculate a <em>z</em>-Score as follows:</p>
 <p><span class="math display">\[z = \frac{x-\mu}{\sigma} = \frac{(-8)-(-3)}{1} =-5\]</span></p>
-<p>This <em>z</em>-Score tells us that the morning of December 4th is actually 5 standard deviations below the average population temperature! This is significantly below average! Brrrr</p>
+<p>This <em>z</em>-Score tells us that the morning of December 4th is actually 5 standard deviations below the average population temperature! Remember that we could look at our <em>z</em> table and see that only less than 0.00004% of days are expected to be below this level, so this is significantly below average! Brrrr</p>
 <p>We can also use <em>z</em>-Scores to compare different samples when we’re given the population standard deviation. If a sample of 30 people before the classical music intervention had an average well-being score of 2 (<span class="math inline">\(\mu_1 = 2\)</span>) and if the same people after the classical music intervention had an average well-being score of 4 (<span class="math inline">\(\mu_1 = 4\)</span>), we could calculate the <em>z</em>-Score. Of course, we need to know the standard deviation. If we are given the population standard deviations, then we’re good to go. In this case, let’s say that <span class="math inline">\(\sigma_1 = 1.5\)</span> and <span class="math inline">\(\sigma_2 = 1\)</span>.</p>
 <p>We need the standard error (<span class="math inline">\(SE\)</span>), as you’ve done before, as follows:</p>
 <p><span class="math display">\[SE = \sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n}} = \sqrt{\frac{1.5^2}{30} + \frac{1^2}{30}} = 0.32914\]</span></p>
@@ -2891,7 +2891,7 @@ print(paste0(&quot;Before the intervention, the classical condition reported an 
 {"columns":[{"label":["Z"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.0","2":"0.5199400"},{"1":"0.1","2":"0.5596200"},{"1":"0.2","2":"0.5987100"},{"1":"0.3","2":"0.6368300"},{"1":"0.4","2":"0.6736400"},{"1":"0.5","2":"0.7088400"},{"1":"0.6","2":"0.7421500"},{"1":"0.7","2":"0.7733700"},{"1":"0.8","2":"0.8023400"},{"1":"0.9","2":"0.8289400"},{"1":"1.0","2":"0.8531400"},{"1":"1.1","2":"0.8749300"},{"1":"1.2","2":"0.8943500"},{"1":"1.3","2":"0.9114900"},{"1":"1.4","2":"0.9264700"},{"1":"1.5","2":"0.9394300"},{"1":"1.6","2":"0.9505300"},{"1":"1.7","2":"0.9599400"},{"1":"1.8","2":"0.9678400"},{"1":"1.9","2":"0.9744100"},{"1":"2.0","2":"0.9798200"},{"1":"2.1","2":"0.9842200"},{"1":"2.2","2":"0.9877800"},{"1":"2.3","2":"0.9906100"},{"1":"2.4","2":"0.9928600"},{"1":"2.5","2":"0.9946100"},{"1":"2.6","2":"0.9959800"},{"1":"2.7","2":"0.9970200"},{"1":"2.8","2":"0.9978100"},{"1":"2.9","2":"0.9984100"},{"1":"3.0","2":"0.9988600"},{"1":"3.1","2":"0.9991800"},{"1":"3.2","2":"0.9994200"},{"1":"3.3","2":"0.9996000"},{"1":"3.4","2":"0.9997200"},{"1":"3.5","2":"0.9998100"},{"1":"3.6","2":"0.9998700"},{"1":"3.7","2":"0.9999100"},{"1":"3.8","2":"0.9999400"},{"1":"3.9","2":"0.9999600"},{"1":"4.0","2":"0.9999700"},{"1":"4.1","2":"0.9999800"},{"1":"4.2","2":"0.9999900"},{"1":"4.3","2":"0.9999900"},{"1":"4.4","2":"1.0000000"},{"1":"4.5","2":"1.0000000"},{"1":"4.6","2":"1.0000000"},{"1":"4.7","2":"1.0000000"},{"1":"4.8","2":"1.0000000"},{"1":"4.9","2":"0.9999996"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>It’s a crazy outlier. Remember that we only need to be above the 97.5% mark (<em>p</em> &lt; 0.05) to reject the null hypothesis. We’re we’ll past it, so we reject <span class="math inline">\(H_0\)</span>; we say “there is a significant difference between the two groups - our classical music intervention worked!”</p>
+<p>It’s a crazy outlier. Remember that we only need to be above the 97.5% mark (<span class="math inline">\(p &lt; .05\)</span>) to reject the null hypothesis. We’re well past it, so we reject <span class="math inline">\(H_0\)</span>; we say “there is a significant difference between the two groups - our classical music intervention worked!”</p>
 <p>So <em>z</em>-Scores are great, but we’ve just found a limitation to <em>z</em>-Scores here..</p>
 </div>
 <div id="whats-wrong-with-the-z-score" class="section level2">
@@ -2919,7 +2919,7 @@ print(paste0(&quot;Before the intervention, the classical condition reported an 
 <ol style="list-style-type: decimal">
 <li>Dependent <em>t</em>-Test (sometimes called a ‘paired <em>t</em>-Test’)</li>
 </ol>
-<p>This is the one that is most similar to what we were just doing above with the pre- and post-test classical music groups, only now we do not need to be given population standard deviations, because we <em>t</em>-Tests let us use the sample sd’s!</p>
+<p>This is the one that is most similar to what we were just doing above with the pre- and post-test classical music groups, only now we do not need to be given population standard deviations, because <em>t</em>-Tests kindly let us use the sample sd’s!</p>
 <p>It’s called dependent because we’re looking at differences within the same group of people, just over time or over some intervention.</p>
 <p>Just as a <em>z</em>-Test looks like</p>
 <p><span class="math display">\[z = \frac{\mu_2-\mu_1}{\sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n}}}\]</span></p>
@@ -2946,7 +2946,7 @@ print(paste0(&quot;Before the intervention, the classical condition reported an 
 </div>
 <p>The <em>t</em> table functions a little bit differently than the <em>z</em> table. When we use the <em>z</em> table, we find the percentile of the standard normal (Z) distribution by using a specific number of standard deviations.</p>
 <p>If, like above, we were trying to look up <span class="math inline">\(z = 6.08\)</span>, we would find that it is above 99.999% of all values in the distribution - this shows that we indeed have a difference greater than the 97.5% needed to show that <span class="math inline">\(p &lt; .05\)</span> so that we can reject our null hypothesis (<span class="math inline">\(H_0\)</span>).</p>
-<p>In the case of the <em>t</em> table, we don’t use our <em>t</em> value to look up the percentage (percentile). We actually use our degrees of freedom (<span class="math inline">\(df\)</span>) to look up a level of significance.</p>
+<p>In the case of the <em>t</em> table, we don’t use our <em>t</em> value to look up the percentage (percentile). We actually use our degrees of freedom (<span class="math inline">\(df\)</span>) to look up a level of significance (a <em>z</em> value).</p>
 <p>In this example, we have a sample of size <span class="math inline">\(N = 30\)</span> people. This means that our degrees of freedom is <span class="math inline">\(df = N - 1 = 30 - 1 = 29\)</span>. Looking this value up in the table, we find a “significance threshold” of <span class="math inline">\(t = 1.699\)</span>ish.</p>
 <p>What this truly means is that, for a sample of size <span class="math inline">\(N = 30\)</span>, a <em>t</em> value of <span class="math inline">\(t = 1.699\)</span> is at that 97.5% mark on the Z distribution (so that <span class="math inline">\(p &lt; .05\)</span>). So as long as our <em>t</em> is greater than <span class="math inline">\(1.699\)</span>, we have found an effect that is significant at the <span class="math inline">\(p &lt; .05\)</span> level; enough to comfortably reject the null hypothesis.</p>
 <p>Since our <span class="math inline">\(t = 6.08\)</span>, we reject the null hypothesis (<span class="math inline">\(p &lt; .05\)</span>).</p>
@@ -2965,11 +2965,11 @@ wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;)</code>
   </script>
 </div>
 <pre class="r"><code># let&#39;s calculate some descriptive statistics that we&#39;ll need
-N_classical = nrow(wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))
-M_pretest = mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Baseline_WB)
-SD_pretest = sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Baseline_WB)
-M_posttest = mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Post_WB)
-SD_posttest = sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Post_WB)</code></pre>
+N_classical &lt;- nrow(wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))
+M_pretest &lt;- mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Baseline_WB)
+SD_pretest &lt;- sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Baseline_WB)
+M_posttest &lt;- mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Post_WB)
+SD_posttest &lt;- sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Classical&quot;))$Post_WB)</code></pre>
 <p><strong>Using R:</strong> We can also print these values!</p>
 <pre class="r"><code># let&#39;s &#39;display&#39; these values
 print(N_classical)</code></pre>
@@ -2984,7 +2984,7 @@ print(N_classical)</code></pre>
 <pre><code>## [1] 1.048809</code></pre>
 <p><strong>Using R:</strong> And calculate our degrees of freedom using another (already existing) variable!</p>
 <pre class="r"><code># let&#39;s &#39;display&#39; these values
-df = N_classical - 1
+df &lt;- N_classical - 1
 
 # and we&#39;ll print it
 print(df)</code></pre>
@@ -2993,7 +2993,7 @@ print(df)</code></pre>
 <p><span class="math display">\[t = \frac{M_2-M_1}{\sqrt{\frac{SD_1^2}{N} + \frac{SD_2^2}{N}}} = \frac{5.5-4.5}{\sqrt{\frac{0.5477^2}{6} + \frac{1.0488^2}{6}}} = \frac{1}{0.483} = 2.07\]</span></p>
 <p><strong>Using R:</strong> We can also use R to calculate this <em>t</em> statistic as follows.</p>
 <pre class="r"><code># calculate t (sqrt is for a square root)
-t = (M_posttest - M_pretest) / sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
+t &lt;- (M_posttest - M_pretest) / sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
 
 # and we&#39;ll print the value
 print(t)</code></pre>
@@ -3007,6 +3007,8 @@ print(t)</code></pre>
 </div>
 <p>We notice that a significant <em>t</em> value using only 5 degrees of freedom is <span class="math inline">\(t_{significant} = 2.01\)</span>. Since the <em>t</em> value we calculated meets (and surpasses) this level, we reject the null hypothesis - that is, there is a significant chance that there is a difference between the pretest and posttest well-being samples; the classical music intervention appears to have worked!</p>
 <p>This being said, we’re only using <span class="math inline">\(N = 6\)</span> participants. Notice that the more participants we use, the lower the calculated <em>t</em> value needs to be to be significant (<span class="math inline">\(p &lt; .05\)</span>). As we discussed above, this makes sense because the larger our sample, the more we can believe that those standard deviations approach the real deal (the population standard deviations).</p>
+<p>In APA-7 format, we might report this finding as follows:</p>
+<p>“A significant change in self-report well-being was measured within the <span class="math inline">\(N = 6\)</span> participants between pre-test (<span class="math inline">\(M_1 = 5.5\)</span>, <span class="math inline">\(SD_1 = 0.55\)</span>) and post-test (<span class="math inline">\(M_2 = 4.5\)</span>, <span class="math inline">\(SD_2 = 1.05\)</span>) 7 days later (<span class="math inline">\(t(5) = 2.07\)</span>, <span class="math inline">\(p &lt; .05\)</span>).”</p>
 </div>
 </div>
 <div id="independent" class="section level2">
@@ -3015,9 +3017,9 @@ print(t)</code></pre>
 <ol style="list-style-type: decimal">
 <li>Independent Samples <em>t</em>-Test</li>
 </ol>
-<p>This <em>t</em>-test is only slightly different from the above because, instead of looking at within-participant across time or across intervention, we look at two different (independent) groups of participants experience significantly different change.</p>
+<p>This <em>t</em>-test is only slightly different from the above because, instead of looking at within-participant change across time or across intervention, we look at whether two different (independent) groups of participants experience significantly different change.</p>
 <p>This type of question is useful if we were to investigate whether the change that is experienced in the Classical-condition participants over time is greater than the change that is naturally experienced in the control condition over time (For example, there may be maturation or history effects left uncontrolled that cause a natural increase in well-being. This aspect of control is one of the beautiful features of an experiment.)</p>
-<p>Really, there are only two differences between the dependent and independent samples <em>t</em>. First, by design, two independent samples have the chance to be of different sizes (<span class="math inline">\(n\)</span>’s).</p>
+<p>Really, there are only two differences between the dependent and independent samples <em>t</em>. First, by design, two independent samples have the chance to be of different sample sizes (<span class="math inline">\(n\)</span>’s).</p>
 <p>Therefore, instead of just referring to <span class="math inline">\(n\)</span> in our <em>t</em>-statistic formula, we must consider the possibility of an <span class="math inline">\(n_1\)</span> and <span class="math inline">\(n_2\)</span>. Plain and simple.</p>
 <p><span class="math display">\[t = \frac{M_2-M_1}{\sqrt{\frac{SD_1^2}{n_1} + \frac{SD_2^2}{n_2}}}\]</span></p>
 <p>The second difference is that, since we are now considering <span class="math inline">\(n_1 + n_2\)</span> participants in total (instead of only <span class="math inline">\(n\)</span> participants), we must use a different value for our degrees of freedom.</p>
@@ -3045,11 +3047,11 @@ wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;)</code></
   </script>
 </div>
 <pre class="r"><code># let&#39;s calculate some descriptive statistics that we&#39;ll need
-N_control = nrow(wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))
-M_control_t1 = mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Baseline_WB)
-SD_control_t1 = sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Baseline_WB)
-M_control_t2 = mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Post_WB)
-SD_control_t2 = sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Post_WB)</code></pre>
+N_control &lt;- nrow(wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))
+M_control_t1 &lt;- mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Baseline_WB)
+SD_control_t1 &lt;- sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Baseline_WB)
+M_control_t2 &lt;- mean((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Post_WB)
+SD_control_t2 &lt;- sd((wellbeing_intervention_data %&gt;% filter(Music == &quot;Control&quot;))$Post_WB)</code></pre>
 <p><strong>Using R:</strong> We’ll print the control descriptive statistics now too!</p>
 <pre class="r"><code># let&#39;s &#39;display&#39; these values
 print(N_control)</code></pre>
@@ -3064,16 +3066,16 @@ print(N_control)</code></pre>
 <pre><code>## [1] 0.7527727</code></pre>
 <p>We need a couple intermediate values to make this work. We’re looking at the <em>change</em> in means, so let’s ensure we’re using those values.</p>
 <pre class="r"><code># let&#39;s &#39;display&#39; these values
-M_classical_change = M_posttest - M_pretest
-M_control_change = M_control_t2 - M_control_t1
-SD_classical_change = sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
-SD_control_change = sqrt((SD_control_t1^2 + SD_control_t2^2) / N_control)</code></pre>
+M_classical_change &lt;- M_posttest - M_pretest
+M_control_change &lt;- M_control_t2 - M_control_t1
+SD_classical_change &lt;- sqrt((SD_pretest^2 + SD_posttest^2) / N_classical)
+SD_control_change &lt;- sqrt((SD_control_t1^2 + SD_control_t2^2) / N_control)</code></pre>
 <p>From this, we figure out that the mean change in scores for classical participants was 1, while mean change in the control condition was 0.3333333. We also found the standard deviation of these changes; 0.4830459 and 0.505525, respectively.</p>
 <p><strong>Using R:</strong> Okay. We’ll compute the independent <em>t</em>-value now. Only this time, we’re going to rely completely on R; we won’t be calculating it by hand.</p>
 <pre class="r"><code># calculate t (sqrt is for a square root)
-t = (M_classical_change - M_control_change) /
+t &lt;- (M_classical_change - M_control_change) /
   sqrt((SD_classical_change^2 / N_classical)
-         + (SD_control_change^2 / N_classical))
+         + (SD_control_change^2 / N_control))
 
 # and we&#39;ll print the value
 print(t)</code></pre>
@@ -3086,7 +3088,7 @@ print(t)</code></pre>
   </script>
 </div>
 <p>For <span class="math inline">\(df = 10\)</span>, we only need <span class="math inline">\(t_{significant} = 1.812\)</span> for us to have a significant effect. Since <span class="math inline">\(t = 2.335\)</span>, we find that <span class="math inline">\(t &gt; t_{significant}\)</span> and therefore we reject the null hypothesis that the change in well-being among classical participants was due to maturation and/or history.</p>
-<p>Therefore, we believe the classical music intervention is actively improving the well-being of PSYCH 292 students.</p>
+<p>Therefore, we believe the classical music intervention leads to an improvement in the well-being of PSYCH 292 students.</p>
 </div>
 </div>
 <div id="conclusion" class="section level1">
@@ -3094,7 +3096,7 @@ print(t)</code></pre>
 <p>This was a fun tutorial, but we’ve only scratched the surface of <em>t</em>-tests, statistics, and the R language.</p>
 <p>There’s also many more analyses that could be run on these data.</p>
 <p>I hope you got something out of this! Thanks for joining me :))</p>
-<p>(I’m going to go to bed now because stats makes me lose track of time; it’s 3AM and is therefore past my bedtime.)</p>
+<p>(I’m going to go to bed now because running stats makes me lose track of time; it’s 3AM and is therefore past my bedtime.)</p>
 </div>
 
 
