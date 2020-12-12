@@ -30,9 +30,9 @@ tbl_z <- read.csv("ztable-05.csv")
 tbl_t <- read.csv("ttable-05.csv")
 ```
 
-In this PSYCH 292 tutorial, we are going to focus on t-tests. We'll introduce the essential concepts as we walk through a pratical example.
+In this PSYCH 292 tutorial, we are going to focus on t-tests. We'll introduce the essential concepts as we walk through a practical example.
 
-While most of the focus of this tutorial will be on statisics, we'll also look at how we can perform these calculations in a statistical programming language called "R". I'll put the "**Using R**" heading throughout the tutorial to denote optional information about the "R" programming language! Enjoy :)
+While most of the focus of this tutorial will be on statistics, we'll also look at how we can perform these calculations in a statistical programming language called "R". I'll put the "**Using R**" heading throughout the tutorial to denote optional information about the "R" programming language! Enjoy :)
 
 # Our Data
 
@@ -42,7 +42,7 @@ We'll be conducting our t-tests on a dataset of N = 18 participants. These (exam
 
 We randomly asked 18 students in our PSYCH 292 class to participate. Each participant in the *experiment* began by reporting their *baseline* (initial) Well-Being score. Well-Being was *operationalized* as a *self-report* measure of their perceived health and happiness. Participants rated their Well-Being on a score from 1 (A very low Well-Being) to 7 (A very high Well-Being). Participants were also asked to report the number of coffees that they drink on an average day because we think that Coffee Consumption might be a *predictor* variable of one's Well-Being. Knowing how much coffee each participant drinks per day allows us to *control for* Coffee Consumption.
 
-After we measured our *baseline* Well-Being score and asked about Coffee Consumption, we began the *experimental manipulation*. The *indepenent (manipulated) variable* is Music Genre. We *randomly assigned* each participant to one of three Music Genre *conditions* (either Classical, Blues, or Control). In the Classical Music Genre condition, the participants were asked to listen to 15 minutes of Classical music when they first wake up for one week. Likewise, in the Blues Music Genre condition, the participants were asked to listen to 15 minutes of Blues music when they first wake up for one week. In the *control condition*, participants were not asked to listen to any music for the week.
+After we measured our *baseline* Well-Being score and asked about Coffee Consumption, we began the *experimental manipulation*. The *independent (manipulated) variable* is Music Genre. We *randomly assigned* each participant to one of three Music Genre *conditions* (either Classical, Blues, or Control). In the Classical Music Genre condition, the participants were asked to listen to 15 minutes of Classical music when they first wake up for one week. Likewise, in the Blues Music Genre condition, the participants were asked to listen to 15 minutes of Blues music when they first wake up for one week. In the *control condition*, participants were not asked to listen to any music for the week.
 
 At the end of the week, we measured (in a *post-test*) the Well-Being of each participant again using the same 1-7 *self-report* measure.
 
@@ -54,7 +54,7 @@ In this dataset, the *independent variable (IV)* is Music Genre (either Classica
 
 ## Dataset
 
-**Using R:** To load a datafile using R, we can use the following code.
+**Using R:** To load a data file using R, we can use the following code.
 ```{r dataload2}
 # In R, or other programming languages, we can assign values
 # to variables just like you would in research.
@@ -72,7 +72,7 @@ At the end of the week, these are the data we collected.
 wellbeing_intervention_data
 ```
 
-The columns of this data table are *Participant*, *Coffess* (the number of cups that each participant reporting consuming daily), *Music* (the condition; one of *Classical*, *Blues*, or *Control*), *Baseline_WB* (the level of Well-Being each participant reported at the beginning of the experiment; between 1 and 7), and *Post_WB* (the level of Well-Being reported at the end of the week-long intervention).
+The columns of this data table are *Participant*, *Coffees* (the number of cups that each participant reporting consuming daily), *Music* (the condition; one of *Classical*, *Blues*, or *Control*), *Baseline_WB* (the level of Well-Being each participant reported at the beginning of the experiment; between 1 and 7), and *Post_WB* (the level of Well-Being reported at the end of the week-long intervention).
 
 # Questions
 
@@ -159,7 +159,7 @@ $$SE = \sqrt{\frac{\sigma_1^2}{n} + \frac{\sigma_2^2}{n}} = \sqrt{\frac{1.5^2}{3
 
 $$z = \frac{\mu_2-\mu_1}{SE} = \frac{4-2}{0.32914} = 6.08$$
 
-We end up with a *z*-Score = 6.08. Remember that we're testing our *null hypothesis* that the two groups are the same (no difference). If there were no difference between the groups, we would expect there to be pretty close to a zero standard deviation difference between them, but we found a difference of over 6 standard devations!
+We end up with a *z*-Score = 6.08. Remember that we're testing our *null hypothesis* that the two groups are the same (no difference). If there were no difference between the groups, we would expect there to be pretty close to a zero standard deviation difference between them, but we found a difference of over 6 standard deviations!
 
 If we search up the *z*-value in a *z* table, we see that this *z*-value is above the 99.999% of all possible z-values..
 
@@ -319,7 +319,7 @@ We get the same thing a whole lot quicker! Therefore, we find a $t = 2.07$ with 
 tbl_t
 ```
 
-We notice that a significant *t* value using only 5 degrees of freedom is $t_{significant} = 2.01$. Since the *t* value we calculated meets (and surpasses) this level, we reject the null hypothesis - that is, there is a significant chance that there is a difference between the pretest and posttest well-being samples; the classical music intervention appears to have worked!
+We notice that a significant *t* value using only 5 degrees of freedom is $t_{significant} = 2.01$. Since the *t* value we calculated meets (and surpasses) this level, we reject the null hypothesis - that is, there is a significant chance that there is a difference between the pretest and post test well-being samples; the classical music intervention appears to have worked!
 
 This being said, we're only using $N = 6$ participants. Notice that the more participants we use, the lower the calculated *t* value needs to be to be significant ($p < .05$). As we discussed above, this makes sense because the larger our sample, the more we can believe that those standard deviations approach the real deal (the population standard deviations).
 
